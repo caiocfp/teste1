@@ -15,17 +15,17 @@ x+y
 x/y
 x^y
 
-####[]indica a posiÁ„o dos elementos buscados em um dado vetor#################
+####[]indica a posi√ß√£o dos elementos buscados em um dado vetor#################
 x[2]
 x[2:3]
 
-########[]o elemento com o sinal menos remove a  elemento  na posiÁ„o e retorna o restante do vetor##########
+########[]o elemento com o sinal menos remove a  elemento  na posi√ß√£o e retorna o restante do vetor##########
 x[-2]
 x[-c(1,2)]
 
 
 #######MAtriz################################
-###A sequÍncia com valores de 1 ‡ 12 e, depois da vÌrgula, entram o n˙mero de linhas e o n˙mero de coluna ####
+###A sequ√™ncia com valores de 1 √† 12 e, depois da v√≠rgula, entram o n√∫mero de linhas e o n√∫mero de coluna ####
 
 z=matrix(seq(1,12),4,3)
 
@@ -34,31 +34,31 @@ z
 
 z[3:4,2:3]
 
-#quando pedir para retornar uma coluna, indique depois da vÌrgula para que o computador entenda que È um coluna###
+#quando pedir para retornar uma coluna, indique depois da v√≠rgula para que o computador entenda que √© um coluna###
 ####coluna###
 z[,1]
 ####linha####
 z[1,]
 
-####Quando pedimos que a m·quina no retorne uma coluna ou uma linha, os valores deixam de ser uma matriz####
-####e se transformam em um vetor. Para manter o status de matriz, nÛ indcamos que o "drop = False"
+####Quando pedimos que a m√°quina no retorne uma coluna ou uma linha, os valores deixam de ser uma matriz####
+####e se transformam em um vetor. Para manter o status de matriz, n√≥ indcamos que o "drop = False"
 
 z[,1, drop = F]
 
 dim(z)
 
-####Gerar dados aleatÛrios e gr·ficos#######
+####Gerar dados aleat√≥rios e gr√°ficos#######
 x=runif(50)
-#####Valores com a distribuiÁ„o normal######
+#####Valores com a distribui√ß√£o normal######
 y=rnorm(50)
 
-####gr·fico#############
+####gr√°fico#############
 plot(x,y)
 
 plot(x,y, xlab = "Random Uniform", ylab = "Random Normal", pch = "*", col = "blue")
 
 
-#####o comando mfrow indica duas linhas de gr·fico e uma coluna#####
+#####o comando mfrow indica duas linhas de gr√°fico e uma coluna#####
 par(mfrow = c(2,1))
 plot(x,y)
 hist(y)
@@ -68,17 +68,17 @@ par(mfrow = c(1,1))
 
 data(mtcars)
 
-#######Checar as principais caracterÌsticas#####
+#######Checar as principais caracter√≠sticas#####
 names(mtcars)
 dim(mtcars)
 class(mtcars)
 summary(mtcars)
 
-########Gr·ficos#################
+########Gr√°ficos#################
 
 plot(mtcars$cyl,mtcars$mpg)
 
-###VocÍ pode referenciar um data frame "diretamente"#####
+###Voc√™ pode referenciar um data frame "diretamente"#####
 
 attach(mtcars)
 search()
@@ -86,16 +86,16 @@ plot(cyl,mpg)
 
 
 
-##########Regress„o#########################
+##########Regress√£o#########################
 
-####Pacotes instalados para o exercÌcio####
+####Pacotes instalados para o exerc√≠cio####
 
 library(MASS)
 
 install.packages("ISLR")
 library(ISLR)
 
-##########Regress„o simples################
+##########Regress√£o simples################
 
 names(Boston)
 data("Boston")
@@ -104,35 +104,35 @@ data("Boston")
 fit = lm(medv~lstat, data = Boston)
 summary(fit)          
 
-###########Linha de regress„o#########
+###########Linha de regress√£o#########
 abline(fit, col = "red")
 names(fit)
 
-###########Intervalo de confianÁa###########
+###########Intervalo de confian√ßa###########
 confint(fit)
 
-###########PrediÁ„o com intervalo de confianÁa##################
+###########Predi√ß√£o com intervalo de confian√ßa##################
 predict(fit,data.frame(lstat=c(5,10,15)),interval = "confidence")
 
 
-##########Regress„o multipla################
+##########Regress√£o multipla################
 fit2 = lm(medv~lstat+
             age,
           data = Boston)
 summary(fit2)
 
-##########Usando todos os regressıres, excluÌndo o regressando#############3333
+##########Usando todos os regress√µres, exclu√≠ndo o regressando#############3333
 fit3 = lm(medv~ .,
           data = Boston)
 summary(fit3)
 
-########V·rios gr·ficos ao mesmo ao mesmo tempo (2 linhas, 2 colunas)
+########V√°rios gr√°ficos ao mesmo ao mesmo tempo (2 linhas, 2 colunas)
 
 par(mfrow= c(2,2))
 plot(fit3)
 
 
-##########Regress„o com tudo, mas sem Age e Indus####################
+##########Regress√£o com tudo, mas sem Age e Indus####################
 
 fit4 = update(fit3, ~. 
               - age
@@ -140,7 +140,7 @@ fit4 = update(fit3, ~.
 summary(fit4)
 
 
-########### N„oLinear#######################################
+########### N√£oLinear#######################################
 
 
 fit5 = lm(medv ~ lstat*age,
@@ -159,25 +159,25 @@ summary(fit6)
 attach(Boston)
 
 
-###########retornar os gr·ficos ############
+###########retornar os gr√°ficos ############
 
 par(mfrow = c(1,1))
 
 plot(medv~lstat)
 
-#########gr·fico em pontos################
+#########gr√°fico em pontos################
 points(lstat, fitted(fit6),
        col = "red", pch =20)
 
-###########funÁ„o polinomial direto########
+###########fun√ß√£o polinomial direto########
 fit7 = lm(medv~poly(lstat,4))
 
 points(lstat, fitted(fit7),
        col = "blue",
        pch = 20)
 
-#forma de gr·ficos#####################
-######primeiro estabelece os dados de 1 ‡ 20 para cada eixo e depois estabelece um formato para cada unidade (pch)#####
+#forma de gr√°ficos#####################
+######primeiro estabelece os dados de 1 √† 20 para cada eixo e depois estabelece um formato para cada unidade (pch)#####
 plot(1:20, 1:20, pch = 1:20, cex = 2)
 
 
@@ -188,16 +188,16 @@ names(Carseats)
 
 summary(Carseats)
 
-########o : indica a interaÁ„o entre a vari·vel qualitativa e a quantitativa#################
+########o : indica a intera√ß√£o entre a vari√°vel qualitativa e a quantitativa#################
 
 fit1 = lm(Sales~. + Income:Advertising + Age:Price, 
           Carseats)
 summary(fit1)
 
-######Discrimina as vari·veis qualitativas###############
+######Discrimina as vari√°veis qualitativas###############
 contrasts(Carseats$ShelveLoc)
 
-#########Escrever FunÁıes no R  "..." inclui maior vari·veis########################
+#########Escrever Fun√ß√µes no R  "..." inclui maior vari√°veis########################
 regplot = function(x,y){
           fit = lm(y~x,...)
           plot(x,y)
@@ -218,16 +218,16 @@ regplot(Price,Sales,
 
 ################Logit###############################
 
-########require È analogo ‡ library##############
+########require √© analogo √† library##############
 
 require(ISLR)
 
 names(Smarket)
 summary(Smarket)
 
-#######Smarket$Direction È uma vari·vel bin·ria#########
+#######Smarket$Direction √© uma vari√°vel bin√°ria#########
 
-#######Gr·ficos com a coluna È a bin·ria###########
+#######Gr√°ficos com a coluna √© a bin√°ria###########
 
 pairs(Smarket, 
       col = Smarket$Direction)
@@ -246,8 +246,8 @@ glm.fit = glm(Direction ~
               family = binomial)
 summary(glm.fit)
 
-#############PrediÁ„o#################
-#######o type = "response" devolve a probabilidade. No Default o resultado d· os os log-odds#####
+#############Predi√ß√£o#################
+#######o type = "response" devolve a probabilidade. No Default o resultado d√° os os log-odds#####
 ####### o type = "terms" devolve a matriz de termos ##################
 
 
@@ -256,7 +256,7 @@ glm.probs = predict(glm.fit,
 
 glm.probs[1:5]
 
-#############Estabelecer uma resposta verbal ‡ probabilidade################
+#############Estabelecer uma resposta verbal √† probabilidade################
 
 glm.pred = ifelse(glm.probs > 0.5, "Up", "Down")
 
@@ -267,11 +267,11 @@ attach(Smarket)
 table(glm.pred,
       Direction)
 
-##########mÈdia###########################################################
+##########m√©dia###########################################################
 mean(glm.pred==Direction)
 
 #########Treinamento e conjunto teste###################################
-#######O treino aponta uma coluna de "true" para anos anteriores e o restante È "false"
+#######O treino aponta uma coluna de "true" para anos anteriores e o restante √© "false"
 
 treino = Year<2005
 
@@ -288,14 +288,14 @@ glm.fit = glm(Direction ~ Lag1 +
               subset = treino)
 
 
-#############prediÁ„o###################################################
+#############predi√ß√£o###################################################
 glm.probs=predict(glm.fit,
                   newdata = Smarket[!treino,],
                   type = "response")
 
 glm.pred=ifelse(glm.probs > 0.5, "Up", "Down")
 
-##########direÁ„o sem o subjunto treino###############################
+##########dire√ß√£o sem o subjunto treino###############################
 
 Direction.2005 = Smarket$Direction[!treino]
 table(glm.pred, Direction.2005)
@@ -325,14 +325,14 @@ summary(glm.fit)
 
 
 
-############validaÁ„o##############################
-##########O objetivo È validar a prediÁ„o utilizando um conjunto#########
-##########de dados n„o usada previamente para a prediÁ„o###############
+############valida√ß√£o##############################
+##########O objetivo √© validar a predi√ß√£o utilizando um conjunto#########
+##########de dados n√£o usada previamente para a predi√ß√£o###############
 
 
 
 #############Boot gera um bootstrap que replica#########
-#############uma estatÌstica aplicada aos dados######### 
+#############uma estat√≠stica aplicada aos dados######### 
 library(boot)
 
 
@@ -341,13 +341,13 @@ plot(mpg~horsepower, data = Auto)
 
 
 
-########o glm tambÈm roda mqo##################
+########o glm tamb√©m roda mqo##################
 glm.fit = glm(mpg~horsepower,
               data = Auto)
 
 
-##########o crossvalidation (cv.glm) substitui uma observaÁ„o da amostra original########
-#com uma observaÁ„o da prediÁ„o################
+##########o crossvalidation (cv.glm) substitui uma observa√ß√£o da amostra original########
+#com uma observa√ß√£o da predi√ß√£o################
 
 ??cv.glm
 
@@ -358,8 +358,8 @@ cv.glm(Auto,glm.fit)$delta
              glm.fit)
 
 
-###########FunÁ„o da validaÁ„o "leave one out"##########
-###########essa È a funÁ„o que representa o cv.glm####
+###########Fun√ß√£o da valida√ß√£o "leave one out"##########
+###########essa √© a fun√ß√£o que representa o cv.glm####
 
 
 loocv <- function(fit){
@@ -375,7 +375,7 @@ loocv(glm.fit)
 ###########modelo polinomial#######################
 
 #######primeiramente cria-se um vetor com 5 linhas #######
-#######para erros do grau dos graus dos polinÙmios#####
+#######para erros do grau dos graus dos polin√¥mios#####
 
 
 cv.error = rep(0,5)
@@ -392,7 +392,7 @@ plot(grau, cv.error, type = "b")
 
 
 
-########ValidaÁao em 10################################
+########Valida√ßao em 10################################
 ########divide-se a amostra em 10 partes e usa-se 1 parte para o treino#######
 
 
@@ -443,7 +443,7 @@ regfit.full = regsubsets(Salary~.,
 summary(regfit.full)
 
 
-########como h· 19 vari·veis È possÌvel estender atÈ###### 
+########como h√° 19 vari√°veis √© poss√≠vel estender at√©###### 
 ######## 19 subconjuntos#########################################
 
 regfit.full = regsubsets(Salary~.,
@@ -452,14 +452,14 @@ regfit.full = regsubsets(Salary~.,
 
 reg.summary <- summary(regfit.full)
 
-########Plotando o gr·fico da estatÌstica CP [Cp = SQR/MQR - N˙mero de obs + 2vari·veis]
-#######Contra o n˙mero de vari·veis###############################
+########Plotando o gr√°fico da estat√≠stica CP [Cp = SQR/MQR - N√∫mero de obs + 2vari√°veis]
+#######Contra o n√∫mero de vari√°veis###############################
 
 plot(reg.summary$cp,
-     xlab = "Vari·veis",
+     xlab = "Vari√°veis",
      ylab = "Cp stat")
 
-########por n˙mero###############################################
+########por n√∫mero###############################################
 
 which.min(reg.summary$cp)
 
@@ -491,7 +491,7 @@ alpha(Portfolio$X,
       Portfolio$Y)
 
 
-######calcular o erro padr„o proveniente do alpha
+######calcular o erro padr√£o proveniente do alpha
 
 alpha.fn = function(data, index){
                                  with(data[index,],
@@ -513,7 +513,7 @@ boot.out
 plot(boot.out)
 
   
-#########¡rvores de decis„o#####################################
+#########√Årvores de decis√£o#####################################
 library(ISLR)
 install.packages("tree")
 
@@ -524,16 +524,16 @@ attach(Carseats)
 hist(Sales)
 
 
-###### Para adequar a vari·vel ao problema de################### 
-##### ‡rvore de decis„o, transformou-se as vendas###############
-##### em resposta bin·ria#######################################
+###### Para adequar a vari√°vel ao problema de################### 
+##### √†rvore de decis√£o, transformou-se as vendas###############
+##### em resposta bin√°ria#######################################
 
 High = ifelse(Sales <=8, "No", "Yes")
 Carseats <- data.frame(Carseats, High)
 
 
-###### Agora usa-se o modelo de ·rvore, mas retira-se a######## 
-###### a vari·vel de vendas, porque, gerou a bin·ria###########
+###### Agora usa-se o modelo de √°rvore, mas retira-se a######## 
+###### a vari√°vel de vendas, porque, gerou a bin√°ria###########
 
 tree.carseats <- tree(High ~.
                       -Sales,
@@ -551,8 +551,8 @@ tree.carseats
 ########dividir a amos de 400 obs. usa no treino e testa#####
 #######no conjunto teste######################################
 
-#########vocÍ usa o set.seed para "congelar" o gerador de 
-#########n˙meros aleatÛrios###################################
+#########voc√™ usa o set.seed para "congelar" o gerador de 
+#########n√∫meros aleat√≥rios###################################
 
 set.seed(1011)
 treino = sample(1:nrow(Carseats),250)
@@ -576,7 +576,6 @@ prune.carseats <- prune.misclass(tree.carseats, best =13)
 plot(cv.carseats)
 plot(prune.carseats);text(prune.carseats, pretty = 0)
 
-
 ########SUPORT VECTOR MACHINE###################
 
 
@@ -585,25 +584,21 @@ plot(prune.carseats);text(prune.carseats, pretty = 0)
 
 set.seed(10111)
 
-##########estabelece a distribuiÁ„o probabilÌstica(normal)########
-###########com o n˙mero de 40 observaÁıes; 20 linhas e 2 colunas#
+##########estabelece a distribui√ß√£o probabil√≠stica(normal)########
+###########com o n√∫mero de 40 observa√ß√µes; 20 linhas e 2 colunas#
 x=matrix(rnorm(40),20,2)
 
-##########criar uma vari·vel -1,1#######################
+##########criar uma vari√°vel -1,1#######################
 y=rep(c(-1,1),c(10,10))
 
-#########Como a disttribuiÁ„o normal estabelece mÈdia = 0
-#########corrige-se para uma mÈdia 1######################
+#########Como a disttribui√ß√£o normal estabelece m√©dia = 0
+#########corrige-se para uma m√©dia 1######################
 
 x[y==1,]=x[y==1,]+1
 
 plot(x,col=y+3,pch=19)
 
-make.grid <- function(x,n=75){
-               grange=apply(x,2,range)
-               x1=seq(from=grange[1,1],to=grange[2,1],length=n)
-               x2=seq(from=grange[1,2],to=grange[2,2],length=n)
-               expand.grid(X1=xq,X2=x2)}
+
 
 ##############pacotes###############################
 install.packages("e1071")
@@ -611,7 +606,7 @@ library(e1071)
  
 
 #######cria o data frame e estabelece o y########## 
-#######como vari·vel categÛrica#####################
+#######como vari√°vel categ√≥rica#####################
 dat <- data.frame(x,y=as.factor(y))
 svmfit=svm(y~.,
            data=dat,
@@ -622,4 +617,120 @@ print(svmfit)
 plot(svmfit,dat)
 
 
-##A primeira coisa a fazer È uma grade dos valores para X1 e X2###
+  ##A primeira coisa a fazer √© uma grade dos valores para X1 e X2###
+
+
+
+make.grid <- function(x, n = 75){
+  grange=apply(x,2,range)
+  x1=seq(from=grange[1,1], to=grange[2,1], length=n)
+  x2=seq(from=grange[1,2], to=grange[2,2], length=n)
+  expand.grid(X1=x1,X2=x2)
+}
+
+
+
+xgrid=make.grid(x)
+
+# a partir dos valores podemos predizer o support vector #
+ygrid=predict(svmfit,xgrid)
+
+
+# estimar os coeficientes #
+
+beta=drop(t(svmfit$coefs)%*%x[svmfit$index,])
+beta0=svmfit$rho
+
+plot(xgrid,
+     col = c("red","blue")[as.numeric(ygrid)],
+     pch = 20,
+     cex = .2)
+
+points(x, col = y + 3,
+       pch = 19)
+
+points(x[svmfit$index,],
+      pch = 5,
+      cex = 2)
+
+abline(beta0/beta[2],
+       -beta[1]/beta[2])
+
+abline((beta0-1)/beta[2],
+       -beta[1]/beta[2],
+        lty = 2)
+
+abline((beta0+1)/beta[2],
+       -beta[1]/beta[2],
+       lty = 2)
+
+
+#suport vector machine n√£o linear#
+
+#baixar os dados do livro Elements of Statistic#
+
+
+load(url("http://www-stat.stanford.edu//~tibs/ElemStatLearn/datasets/ESL.mixture.rda"))
+
+names(ESL.mixture)
+
+rm(x,y)
+
+
+attach(ESL.mixture)
+
+plot(x, col = y+1)
+
+
+dat = data.frame(y=factor(y),x)
+
+##Support Vector Machine polinomial##
+
+fit=svm(factor(y)~.,
+        data = dat,
+        scale = F,
+        kernel = "radial",
+        cost = 5)
+
+#Agora, √© necessario construir uma grade para fazermos a predicao do svm#
+
+xgrid = expand.grid(X1 = px1,
+                    X2 = px2)
+ygrid = predict(fit, xgrid)
+
+
+plot(xgrid,
+     col = as.numeric(ygrid),
+     pch = 20,
+     cex = .2)
+
+points(x,
+       col = y + 1,
+       pch = 19)
+
+#producao da funcao de SVM [a funcao do contorno]#
+
+func = predict(fit,
+               xgrid,
+               decision.values = T)
+func = attributes(func)$decision
+
+xgrid = expand.grid(X1 = px1,
+                    X2 = px2)
+
+ygrid = predict(fit,
+                xgrid)
+
+plot(xgrid,
+     col = as.numeric(ygrid),
+     pch = 20,
+     cex = .2)
+
+points(x,
+       col = y+1,
+       pch = 19)
+
+
+contour(px1,px2,matrix(func,69,99), level = 0, add = T)
+contour(px1,px2,matrix(prob,69,99), level = .5, add = T, col = "blue")
+
